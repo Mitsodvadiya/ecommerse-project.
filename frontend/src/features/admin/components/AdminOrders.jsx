@@ -79,7 +79,6 @@ export const AdminOrders = () => {
     }
   }
 
-
   return (
 
     <Stack justifyContent={'center'} alignItems={'center'}>
@@ -95,6 +94,7 @@ export const AdminOrders = () => {
                   <TableCell>Order</TableCell>
                   <TableCell align="left">Id</TableCell>
                   <TableCell align="left">Item</TableCell>
+                  <TableCell align="right">Size</TableCell>
                   <TableCell align="right">Total Amount</TableCell>
                   <TableCell align="right">Shipping Address</TableCell>
                   <TableCell align="right">Payment Method</TableCell>
@@ -123,13 +123,20 @@ export const AdminOrders = () => {
                         ))
                       }
                     </TableCell>
+                    <TableCell align="right">{
+                        order.item.map((product)=>(
+                          <Stack mt={2} flexDirection={'row'} alignItems={'center'} columnGap={2}>
+                            <Typography>{product.size}</Typography>
+                          </Stack>
+                        ))
+                      }</TableCell>
                     <TableCell align="right">{order.total}</TableCell>
                     <TableCell align="right">
                       <Stack>
-                        <Typography>{order.address[0].street}</Typography>
-                        <Typography>{order.address[0].city}</Typography>
-                        <Typography>{order.address[0].state}</Typography>
-                        <Typography>{order.address[0].postalCode}</Typography>
+                        <Typography>{order?.address[0]?.street}</Typography>
+                        <Typography>{order?.address[0]?.city}</Typography>
+                        <Typography>{order?.address[0]?.state}</Typography>
+                        <Typography>{order?.address[0]?.postalCode}</Typography>
                       </Stack>
                     </TableCell>
                     <TableCell align="right">{order.paymentMode}</TableCell>

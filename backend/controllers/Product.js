@@ -2,6 +2,7 @@ const { Schema, default: mongoose } = require("mongoose")
 const Product=require("../models/Product")
 
 exports.create=async(req,res)=>{
+    console.log(req.body)
     try {
         const created=new Product(req.body)
         await created.save()

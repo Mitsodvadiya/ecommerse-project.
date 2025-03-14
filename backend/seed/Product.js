@@ -19,6 +19,7 @@ const products = [
     ],
     isDeleted: false,
     updatedAt: "2024-02-07T09:22:57.840Z",
+    size: ["S", "M", "L"],
   },
   {
     _id: "65a7e45902e12c44f599444f",
@@ -39,6 +40,7 @@ const products = [
     isDeleted: false,
     updatedAt: "2024-02-07T09:22:57.840Z",
     stockQuantityQuantity: 5,
+    size: ["M", "L", "XL"],
   },
   {
     _id: "65a7e45902e12c44f5994450",
@@ -54,6 +56,7 @@ const products = [
     images: ["https://res.cloudinary.com/dw9u1e6vh/image/upload/v1735378693/W_maroon_jacket_2_njheqs.jpg","https://res.cloudinary.com/dw9u1e6vh/image/upload/v1735378693/W_maroon_jacket_1_gbygsc.jpg",],
     isDeleted: false,
     updatedAt: "2024-02-07T09:22:57.840Z",
+    size: ["S", "M", "L"],
   },
   {
     _id: "65a7e45902e12c44f5994451",
@@ -72,6 +75,7 @@ const products = [
     ],
     isDeleted: false,
     updatedAt: "2024-02-07T09:22:57.840Z",
+    size: ["M", "L", "XL"],
   },
 //   {
 //     _id: "65a7e45902e12c44f5994452",

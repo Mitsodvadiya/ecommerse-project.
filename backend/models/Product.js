@@ -28,6 +28,10 @@ const productSchema= new Schema({
         ref:"gender",
         required:true
     },
+    size: {
+        type: Array,
+        required: true
+    },
     stockQuantity:{
         type:Number,
         required:true

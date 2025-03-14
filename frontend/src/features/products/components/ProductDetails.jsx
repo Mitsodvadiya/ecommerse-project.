@@ -24,8 +24,6 @@ import Lottie from 'lottie-react'
 import {loadingAnimation} from '../../../assets'
 
 
-const SIZES=['XS','S','M','L','XL']
-const COLORS=['#020202','#F6F6F6','#B82222','#BEA9A9','#E2BB8D']
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 
@@ -38,8 +36,7 @@ export const ProductDetails = () => {
     const cartItems=useSelector(selectCartItems)
     const cartItemAddStatus=useSelector(selectCartItemAddStatus)
     const [quantity,setQuantity]=useState(1)
-    const [selectedSize,setSelectedSize]=useState('')
-    const [selectedColorIndex,setSelectedColorIndex]=useState(-1)
+    const [selectedSize,setSelectedSize]=useState(product?.size[0] || 'normal')
     const reviews=useSelector(selectReviews)
     const [selectedImageIndex,setSelectedImageIndex]=useState(0)
     const theme=useTheme()
@@ -132,7 +129,7 @@ export const ProductDetails = () => {
             navigate('/login')
             return
         }
-        const item = { user: loggedInUser._id, product: id, quantity }
+        const item = { user: loggedInUser._id, product: id, quantity, size: selectedSize }
         dispatch(addToCartAsync(item))
         setQuantity(1)
     }
@@ -278,26 +275,12 @@ export const ProductDetails = () => {
                         
                         <Stack sx={{rowGap:"1.3rem"}} width={'fit-content'}>
 
-                            {/* colors */}
-                            <Stack flexDirection={'row'} alignItems={'center'} columnGap={is387?'5px':'1rem'} width={'fit-content'}>
-                                <Typography>Colors: </Typography>
-                                <Stack flexDirection={'row'} columnGap={is387?".5rem":".2rem"} >
-                                    {
-                                        COLORS.map((color,index)=>(
-                                            <div style={{backgroundColor:"white",border:selectedColorIndex===index?`1px solid ${theme.palette.primary.dark}`:"",width:is340?"40px":"50px",height:is340?"40px":"50px",display:"flex",justifyContent:"center",alignItems:"center",borderRadius:"100%",}}>
-                                                <div onClick={()=>setSelectedColorIndex(index)} style={{width:"40px",height:"40px",border:color==='#F6F6F6'?"1px solid grayText":"",backgroundColor:color,borderRadius:"100%"}}></div>
-                                            </div>
-                                        ))
-                                    }
-                                </Stack>
-                            </Stack>
-                            
                             {/* size */}
                             <Stack flexDirection={'row'} alignItems={'center'} columnGap={is387?'5px':'1rem'} width={'fit-content'}>
                                 <Typography>Size: </Typography>
                                 <Stack flexDirection={'row'} columnGap={is387?".5rem":"1rem"}>
                                     {
-                                        SIZES.map((size)=>(
+                                        (product?.size || ['XS', 'S', 'M', 'L', 'XL']).map((size)=>(
                                             <motion.div onClick={()=>handleSizeSelect(size)} whileHover={{scale:1.050}} whileTap={{scale:1}} style={{border:selectedSize===size?'':"1px solid grayText",borderRadius:"8px",width:"30px",height:"30px",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer",padding:"1.2rem",backgroundColor:selectedSize===size?"#DB4444":"whitesmoke",color:selectedSize===size?"white":""}}>
                                                 <p>{size}</p>
                                             </motion.div>

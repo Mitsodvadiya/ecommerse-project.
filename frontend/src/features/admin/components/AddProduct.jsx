@@ -39,12 +39,15 @@ export const AddProduct = () => {
     },[])
 
     const handleAddProduct=(data)=>{
-        const newProduct={...data,images:[data.image0,data.image1,data.image2,data.image3]}
-        delete newProduct.image0
+        const newProduct = {
+            ...data,
+            images: [data.image0, data.image1, data.image2, data.image3],
+            size: data.sizes.split(',').map(size => size.trim()) // Trim spaces
+          };
+          delete newProduct.image0
         delete newProduct.image1
         delete newProduct.image2
         delete newProduct.image3
-
         dispatch(addProductAsync(newProduct))
     }
 
@@ -131,6 +134,11 @@ export const AddProduct = () => {
     
                     </Stack>
 
+                </Stack>
+
+                <Stack>
+                    <Typography variant='h6'  fontWeight={400} gutterBottom>Sizes (comma separated)</Typography>
+                    <TextField {...register("sizes",{required:"Sizes are required"})}/>
                 </Stack>
 
             </Stack>
